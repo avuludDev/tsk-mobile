@@ -5,10 +5,13 @@ import { PhoneCta, PhoneNumber } from "./PhoneCta";
 import { site } from "@/lib/site-data";
 
 export function Contacts() {
-  // Place ID labels the map pin with the actual business name instead of a bare coordinate marker.
-  const mapQuery = `place_id:${site.placeId}`;
-  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`;
-  const mapLink = `https://www.google.com/maps/place/?q=${encodeURIComponent(mapQuery)}`;
+  // The embed ignores the zoom param and shows the whole world when queried by place_id — a
+  // known Google quirk. A name+address text query zooms correctly and still labels the pin.
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
+    `${site.gbpName}, ${site.addressFull}`
+  )}&z=16&output=embed`;
+  // The place_id form is fine (and more precise) for the regular, non-embedded Maps link.
+  const mapLink = `https://www.google.com/maps/place/?q=place_id:${site.placeId}`;
 
   return (
     <section id="contacts" className="py-16 sm:py-24 border-b border-border bg-surface/40">
