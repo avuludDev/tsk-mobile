@@ -11,8 +11,22 @@ export type GoogleReviewsResult = {
   totalReviews: number;
 };
 
+type PlacesApiReview = {
+  rating: number;
+  text?: { text: string; languageCode: string };
+  relativePublishTimeDescription: string;
+  authorAttribution?: { displayName: string };
+};
+
+type PlacesApiResponse = {
+  rating?: number;
+  userRatingCount?: number;
+  reviews?: PlacesApiReview[];
+  error?: { code: number; message: string; status: string };
+};
+
 /**
- * Fetches live reviews for the business from the Google Places API (Place Details, legacy endpoint).
+ * Fetches live reviews for the business from the Places API (New) — Place Details.
  * Requires GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID env vars — returns null when either is missing
  * or the request fails, so callers can fall back to static example reviews.
  *
@@ -23,42 +37,43 @@ export async function getGoogleReviews(): Promise<GoogleReviewsResult | null> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
   const placeId = process.env.GOOGLE_PLACE_ID;
 
-  if (!apiKey || !placeId) return null;
+  if (!apiKey || !placeId) {
+    console.error("[google-reviews] GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID env var is missing");
+    return null;
+  }
 
-  const url = new URL("https://maps.googleapis.com/maps/api/place/details/json");
-  url.searchParams.set("place_id", placeId);
-  url.searchParams.set("fields", "reviews,rating,user_ratings_total");
-  url.searchParams.set("language", "uk");
-  url.searchParams.set("key", apiKey);
+  const url = new URL(`https://places.googleapis.com/v1/places/${placeId}`);
+  url.searchParams.set("languageCode", "uk");
 
   try {
     const res = await fetch(url.toString(), {
+      headers: {
+        "X-Goog-Api-Key": apiKey,
+        "X-Goog-FieldMask": "rating,userRatingCount,reviews",
+      },
       // Revalidate periodically instead of caching indefinitely, per Google's ToS on displaying fresh data.
       next: { revalidate: 60 * 60 * 6 },
     });
-    if (!res.ok) return null;
 
-    const data = await res.json();
-    if (data.status !== "OK" || !data.result) return null;
+    const data: PlacesApiResponse = await res.json();
 
-    const rawReviews: Array<{
-      author_name: string;
-      rating: number;
-      text: string;
-      relative_time_description: string;
-    }> = data.result.reviews ?? [];
+    if (!res.ok || data.error) {
+      console.error(`[google-reviews] API error: ${data.error?.status ?? res.status} — ${data.error?.message ?? res.statusText}`);
+      return null;
+    }
 
     return {
-      reviews: rawReviews.slice(0, 3).map((r) => ({
-        author: r.author_name,
+      reviews: (data.reviews ?? []).slice(0, 3).map((r) => ({
+        author: r.authorAttribution?.displayName ?? "Клієнт",
         rating: r.rating,
-        text: r.text,
-        relativeTime: r.relative_time_description,
+        text: r.text?.text ?? "",
+        relativeTime: r.relativePublishTimeDescription,
       })),
-      rating: data.result.rating ?? 0,
-      totalReviews: data.result.user_ratings_total ?? 0,
+      rating: data.rating ?? 0,
+      totalReviews: data.userRatingCount ?? 0,
     };
-  } catch {
+  } catch (err) {
+    console.error("[google-reviews] fetch failed:", err);
     return null;
   }
 }
