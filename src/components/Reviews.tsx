@@ -63,7 +63,7 @@ export async function Reviews() {
           ))}
         </div>
         {!live && (
-          <p className="mt-6 text-xs text-muted/70">
+          <p className="mt-6 text-xs text-muted">
             Приклади відгуків — підключіть Google Places API, щоб показувати реальні.
           </p>
         )}

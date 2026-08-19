@@ -11,7 +11,9 @@ export function HowItWorks() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step) => (
             <div key={step.step} className="relative rounded-2xl border border-border bg-surface p-6">
-              <span className="text-4xl font-extrabold text-accent/30">{step.step}</span>
+              <span className="text-4xl font-extrabold text-accent/30" aria-hidden="true">
+                {step.step}
+              </span>
               <h3 className="mt-3 font-bold text-foreground">{step.title}</h3>
               <p className="mt-2 text-sm text-muted">{step.description}</p>
             </div>

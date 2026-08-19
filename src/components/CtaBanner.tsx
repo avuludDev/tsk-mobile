@@ -10,7 +10,7 @@ export function CtaBanner() {
           <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-accent-2-foreground">
             Потрібна допомога прямо зараз?
           </h2>
-          <p className="mt-3 text-accent-2-foreground/80">
+          <p className="mt-3 text-accent-2-foreground">
             Виїжджаємо по всьому {site.legalCity} та області — {site.workHours.toLowerCase()}.
           </p>
           <div className="mt-8 flex justify-center">
