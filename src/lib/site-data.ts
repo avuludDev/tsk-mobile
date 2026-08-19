@@ -11,8 +11,8 @@ export const site = {
   phoneDisplay: "+380 93 424 73 82",
   phoneLocal: "093 424 73 82",
   workHours: "Цілодобово, без вихідних",
-  domain: "tsk-mobile.km.ua",
-  url: "https://tsk-mobile.km.ua",
+  domain: "www.tsk-mobile.km.ua",
+  url: "https://www.tsk-mobile.km.ua",
   // Координати з Google Business Profile
   geo: { lat: 49.4438505, lng: 27.0027863 },
   // Google Place ID — публічний ідентифікатор, не секрет, тому зберігається прямо в коді
