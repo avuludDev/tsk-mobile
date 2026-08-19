@@ -20,6 +20,7 @@ function Stars({ count }: { count: number }) {
 
 export async function Reviews() {
   const live = await getGoogleReviews();
+  const placeId = process.env.GOOGLE_PLACE_ID;
 
   const cards = live
     ? live.reviews.map((r) => ({ name: r.author, subtitle: r.relativeTime, text: r.text, rating: r.rating }))
@@ -33,9 +34,21 @@ export async function Reviews() {
       <Container>
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <SectionHeading eyebrow="Відгуки" title="Нам довіряють водії" />
-          <div className="flex items-center gap-2 shrink-0">
-            <Stars count={Math.round(overallRating)} />
-            <span className="text-sm text-muted">{ratingLabel}</span>
+          <div className="flex flex-col items-start sm:items-end gap-3 shrink-0">
+            <div className="flex items-center gap-2">
+              <Stars count={Math.round(overallRating)} />
+              <span className="text-sm text-muted">{ratingLabel}</span>
+            </div>
+            {placeId && (
+              <a
+                href={`https://search.google.com/local/writereview?placeid=${placeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm font-semibold text-accent hover:brightness-110 transition-[filter]"
+              >
+                Залишити відгук на Google →
+              </a>
+            )}
           </div>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-3">

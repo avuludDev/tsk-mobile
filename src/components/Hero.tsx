@@ -6,7 +6,7 @@ import { site } from "@/lib/site-data";
 
 const badges = [
   { icon: Clock, label: "Приїзд за 30–60 хв" },
-  { icon: ShieldCheck, label: "Гарантія на роботи" },
+  { icon: ShieldCheck, label: "Гарантія на роботу" },
   { icon: MapPinned, label: "Місто й область" },
 ];
 

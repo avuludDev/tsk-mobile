@@ -38,9 +38,12 @@ export function LegalModal({ openKey, onClose }: { openKey: LegalKey | null; onC
       />
       <div className="relative max-h-[85vh] w-full sm:max-w-2xl overflow-y-auto rounded-t-2xl sm:rounded-2xl border border-border bg-surface p-6 sm:p-8">
         <div className="flex items-start justify-between gap-4">
-          <h2 id="legal-modal-title" className="text-2xl font-extrabold text-foreground">
-            {content.title}
-          </h2>
+          <div>
+            <h2 id="legal-modal-title" className="text-2xl font-extrabold text-foreground">
+              {content.title}
+            </h2>
+            <p className="mt-1 text-xs text-muted">Редакція від {content.effectiveDate}</p>
+          </div>
           <button
             type="button"
             onClick={onClose}
@@ -50,11 +53,17 @@ export function LegalModal({ openKey, onClose }: { openKey: LegalKey | null; onC
             <X className="h-5 w-5" aria-hidden />
           </button>
         </div>
-        <div className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
-          {content.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+        <div className="mt-6 space-y-5 text-sm leading-relaxed text-muted">
+          {content.sections.map((section) => (
+            <div key={section.heading}>
+              <h3 className="font-semibold text-foreground">{section.heading}</h3>
+              <div className="mt-1.5 space-y-2">
+                {section.body.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
           ))}
-          <p className="text-xs italic">{content.note}</p>
         </div>
       </div>
     </div>

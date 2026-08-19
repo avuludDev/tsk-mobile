@@ -5,7 +5,11 @@ import { PhoneCta, PhoneNumber } from "./PhoneCta";
 import { site } from "@/lib/site-data";
 
 export function Contacts() {
-  const mapSrc = `https://maps.google.com/maps?q=${site.geo.lat},${site.geo.lng}&z=16&output=embed`;
+  const placeId = process.env.GOOGLE_PLACE_ID;
+  // With a Place ID the map pin is labeled with the actual business name instead of a bare coordinate marker.
+  const mapQuery = placeId ? `place_id:${placeId}` : `${site.geo.lat},${site.geo.lng}`;
+  const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`;
+  const mapLink = `https://www.google.com/maps/place/?q=${encodeURIComponent(mapQuery)}`;
 
   return (
     <section id="contacts" className="py-16 sm:py-24 border-b border-border bg-surface/40">
@@ -38,7 +42,7 @@ export function Contacts() {
             </div>
             <PhoneCta className="mt-8 w-full sm:w-fit" />
           </div>
-          <div className="min-h-[320px] overflow-hidden rounded-2xl border border-border">
+          <div className="relative min-h-[320px] overflow-hidden rounded-2xl border border-border">
             <iframe
               title={`Карта: ${site.addressFull}`}
               src={mapSrc}
@@ -46,6 +50,14 @@ export function Contacts() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
+            <a
+              href={mapLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-3 right-3 rounded-full bg-background/90 backdrop-blur px-4 py-2 text-xs font-semibold text-foreground border border-border hover:border-accent hover:text-accent transition-colors"
+            >
+              Відкрити в Google Maps
+            </a>
           </div>
         </div>
       </Container>
