@@ -4,6 +4,16 @@ import { PhoneNumber } from "./PhoneCta";
 import { LegalLinks } from "./LegalLinks";
 import { navLinks, site } from "@/lib/site-data";
 
+function InstagramIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className} aria-hidden>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
 export function Footer() {
   return (
     <footer className="py-12">
@@ -28,6 +38,15 @@ export function Footer() {
             <p className="text-muted">{site.addressFull}</p>
             <PhoneNumber />
             <p className="text-muted">{site.workHours}</p>
+            <a
+              href={site.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-muted hover:text-foreground transition-colors"
+            >
+              <InstagramIcon className="h-4 w-4" />
+              Instagram
+            </a>
           </div>
         </div>
 

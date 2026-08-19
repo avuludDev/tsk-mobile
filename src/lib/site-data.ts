@@ -15,6 +15,7 @@ export const site = {
   url: "https://tsk-mobile.km.ua",
   // Координати з Google Business Profile
   geo: { lat: 49.4438505, lng: 27.0027863 },
+  instagram: "https://www.instagram.com/tsk_mobile_khm/",
 };
 
 export const telHref = `tel:+${site.phoneRaw}`;

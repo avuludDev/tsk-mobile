@@ -61,7 +61,7 @@ export function JsonLd() {
       opens: "00:00",
       closes: "23:59",
     },
-    sameAs: [],
+    sameAs: [site.instagram],
   };
 
   return (
