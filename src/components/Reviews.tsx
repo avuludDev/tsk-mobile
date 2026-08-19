@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
-import { reviews as fallbackReviews } from "@/lib/site-data";
+import { reviews as fallbackReviews, site } from "@/lib/site-data";
 import { getGoogleReviews } from "@/lib/google-reviews";
 
 function Stars({ count }: { count: number }) {
@@ -20,7 +20,6 @@ function Stars({ count }: { count: number }) {
 
 export async function Reviews() {
   const live = await getGoogleReviews();
-  const placeId = process.env.GOOGLE_PLACE_ID;
 
   const cards = live
     ? live.reviews.map((r) => ({ name: r.author, subtitle: r.relativeTime, text: r.text, rating: r.rating }))
@@ -39,16 +38,14 @@ export async function Reviews() {
               <Stars count={Math.round(overallRating)} />
               <span className="text-sm text-muted">{ratingLabel}</span>
             </div>
-            {placeId && (
-              <a
-                href={`https://search.google.com/local/writereview?placeid=${placeId}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold text-accent hover:brightness-110 transition-[filter]"
-              >
-                Залишити відгук на Google →
-              </a>
-            )}
+            <a
+              href={`https://search.google.com/local/writereview?placeid=${site.placeId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-accent hover:brightness-110 transition-[filter]"
+            >
+              Залишити відгук на Google →
+            </a>
           </div>
         </div>
         <div className="mt-12 grid gap-5 sm:grid-cols-3">

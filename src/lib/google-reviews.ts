@@ -1,3 +1,5 @@
+import { site } from "./site-data";
+
 export type GoogleReview = {
   author: string;
   rating: number;
@@ -27,22 +29,21 @@ type PlacesApiResponse = {
 
 /**
  * Fetches live reviews for the business from the Places API (New) — Place Details.
- * Requires GOOGLE_PLACES_API_KEY and GOOGLE_PLACE_ID env vars — returns null when either is missing
- * or the request fails, so callers can fall back to static example reviews.
+ * Requires the GOOGLE_PLACES_API_KEY env var — returns null when it's missing or the request
+ * fails, so callers can fall back to static example reviews.
  *
  * Google's Places API returns at most 5 of the "most relevant" reviews per request — there is no way
  * to fetch the full review history through this API.
  */
 export async function getGoogleReviews(): Promise<GoogleReviewsResult | null> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
-  const placeId = process.env.GOOGLE_PLACE_ID;
 
-  if (!apiKey || !placeId) {
-    console.error("[google-reviews] GOOGLE_PLACES_API_KEY or GOOGLE_PLACE_ID env var is missing");
+  if (!apiKey) {
+    console.error("[google-reviews] GOOGLE_PLACES_API_KEY env var is missing");
     return null;
   }
 
-  const url = new URL(`https://places.googleapis.com/v1/places/${placeId}`);
+  const url = new URL(`https://places.googleapis.com/v1/places/${site.placeId}`);
   url.searchParams.set("languageCode", "uk");
 
   try {

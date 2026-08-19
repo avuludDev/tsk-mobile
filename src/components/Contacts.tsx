@@ -5,9 +5,8 @@ import { PhoneCta, PhoneNumber } from "./PhoneCta";
 import { site } from "@/lib/site-data";
 
 export function Contacts() {
-  const placeId = process.env.GOOGLE_PLACE_ID;
-  // With a Place ID the map pin is labeled with the actual business name instead of a bare coordinate marker.
-  const mapQuery = placeId ? `place_id:${placeId}` : `${site.geo.lat},${site.geo.lng}`;
+  // Place ID labels the map pin with the actual business name instead of a bare coordinate marker.
+  const mapQuery = `place_id:${site.placeId}`;
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`;
   const mapLink = `https://www.google.com/maps/place/?q=${encodeURIComponent(mapQuery)}`;
 
