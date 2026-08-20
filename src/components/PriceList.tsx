@@ -61,6 +61,8 @@ export function PriceList() {
           </table>
         </div>
 
+        {table.note && <p className="mt-3 text-xs text-muted">{table.note}</p>}
+
         <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-border bg-background p-6">
           <p className="text-sm text-muted">
             Не знайшли потрібну послугу в прайсі? Зателефонуйте — озвучимо точну вартість для вашого

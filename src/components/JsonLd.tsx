@@ -42,7 +42,7 @@ export function JsonLd() {
     ],
     makesOffer: [
       { "@type": "Offer", name: "Виїзд по місту", priceCurrency: "UAH", price: "500" },
-      { "@type": "Offer", name: "Сезонна заміна шин", priceCurrency: "UAH", price: "850" },
+      { "@type": "Offer", name: "Шиномонтаж (1 колесо)", priceCurrency: "UAH", price: "300" },
       { "@type": "Offer", name: "Ремонт шин", priceCurrency: "UAH", price: "450" },
       { "@type": "Offer", name: "Аргонно-дугове зварювання дисків", priceCurrency: "UAH", price: "600" },
       { "@type": "Offer", name: "Рихтування дисків", priceCurrency: "UAH", price: "300" },
