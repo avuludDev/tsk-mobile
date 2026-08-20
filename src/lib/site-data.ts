@@ -18,6 +18,8 @@ export const site = {
   // Google Place ID — публічний ідентифікатор, не секрет, тому зберігається прямо в коді
   placeId: "ChIJY6JbNCkHMkcRSrmRaMn5I84",
   instagram: "https://www.instagram.com/tsk_mobile_khm/",
+  // Google Ads tag ID — публічний, призначений для вбудовування на кожній сторінці
+  googleAdsId: "AW-18399683086",
 };
 
 export const telHref = `tel:+${site.phoneRaw}`;
