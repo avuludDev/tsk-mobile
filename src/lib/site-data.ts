@@ -209,6 +209,17 @@ export const priceTables: {
   },
 ];
 
+export const serviceAreaDistricts = [
+  "Центр",
+  "Виставка",
+  "Озерна",
+  "Гречани",
+  "Ракове",
+  "Дубове",
+  "Ружична",
+  "Об'їзна дорога",
+];
+
 export const serviceAreaTowns = [
   "Хмельницький",
   "Старокостянтинів",

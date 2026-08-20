@@ -1,7 +1,7 @@
 import { MapPin, Navigation, Truck } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
-import { serviceAreaTowns } from "@/lib/site-data";
+import { serviceAreaDistricts, serviceAreaTowns } from "@/lib/site-data";
 
 const points = [
   { icon: MapPin, title: "Весь Хмельницький", description: "Виїжджаємо в усі райони міста." },
@@ -41,6 +41,20 @@ export function ServiceArea() {
           </div>
           <div>
             <p className="text-sm text-muted mb-4">
+              Виїжджаємо в усі райони Хмельницького, а також на об&apos;їзну дорогу й траси області:
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {serviceAreaDistricts.map((district) => (
+                <span
+                  key={district}
+                  className="rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs text-muted"
+                >
+                  {district}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-sm text-muted mt-6 mb-4">
               Приймаємо заявки з наступних населених пунктів Хмельницької області:
             </p>
             <div className="flex flex-wrap gap-2">
