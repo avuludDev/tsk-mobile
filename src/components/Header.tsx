@@ -15,7 +15,7 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur xl:relative">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
       <Container className="flex h-16 sm:h-20 items-center justify-between gap-4">
         <Link href="/#top" className="flex items-center gap-2.5 shrink-0">
           <Image
