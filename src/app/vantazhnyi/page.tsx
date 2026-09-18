@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
+import { HowItWorks } from "@/components/HowItWorks";
 import { PriceList } from "@/components/PriceList";
 import { ServiceArea } from "@/components/ServiceArea";
 import { Reviews } from "@/components/Reviews";
@@ -92,6 +93,7 @@ export default function TruckTirePage() {
           items={truckAdvantages}
           icons={advantageIcons}
         />
+        <HowItWorks />
         <PriceList
           eyebrow="Ціни"
           title="Ціни на вантажний шиномонтаж"

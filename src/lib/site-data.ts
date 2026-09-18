@@ -37,10 +37,9 @@ export type NavLink = {
 export const navLinks: NavLink[] = [
   { href: "/#services", label: "Послуги" },
   { href: "/#advantages", label: "Переваги" },
-  { href: "/#how-it-works", label: "Як працюємо", homeOnly: true },
+  { href: "/#how-it-works", label: "Як працюємо" },
   { href: "/#prices", label: "Ціни" },
   { href: "/#service-area", label: "Зона обслуговування", shortLabel: "Зона" },
-  { href: "/vantazhnyi", label: "Вантажний шиномонтаж", shortLabel: "Вантажівки" },
   { href: "/#reviews", label: "Відгуки" },
   { href: "/#contacts", label: "Контакти" },
 ];

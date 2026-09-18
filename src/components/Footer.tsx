@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { PhoneNumber } from "./PhoneCta";
 import { LegalLinks } from "./LegalLinks";
+import { VehicleTypeSwitch } from "./VehicleTypeSwitch";
 import { navLinks, resolveNavHref, site } from "@/lib/site-data";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -37,6 +38,7 @@ export function Footer() {
                 {link.label}
               </a>
             ))}
+            <VehicleTypeSwitch className="col-span-2 mt-1 sm:mt-2 self-start" />
           </nav>
 
           <div className="space-y-2 text-sm">

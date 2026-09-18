@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Container } from "./Container";
 import { PhoneCta, PhoneNumber } from "./PhoneCta";
+import { VehicleTypeSwitch } from "./VehicleTypeSwitch";
 import { navLinks, resolveNavHref, site } from "@/lib/site-data";
 
 export function Header() {
@@ -15,6 +16,11 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+      <div className="hidden xl:block border-b border-border bg-surface/60">
+        <Container className="flex justify-end py-1.5">
+          <VehicleTypeSwitch />
+        </Container>
+      </div>
       <Container className="flex h-16 sm:h-20 items-center justify-between gap-4">
         <Link href="/#top" className="flex items-center gap-2.5 shrink-0">
           <Image
@@ -47,14 +53,17 @@ export function Header() {
           <PhoneCta />
         </div>
 
-        <button
-          type="button"
-          className="xl:hidden p-2 text-foreground shrink-0"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Закрити меню" : "Відкрити меню"}
-        >
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
+        <div className="flex xl:hidden items-center gap-2 shrink-0">
+          <VehicleTypeSwitch iconOnly />
+          <button
+            type="button"
+            className="p-2 text-foreground"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Закрити меню" : "Відкрити меню"}
+          >
+            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+        </div>
       </Container>
 
       {open && (
