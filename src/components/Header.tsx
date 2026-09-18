@@ -16,11 +16,6 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
-      <div className="hidden xl:block border-b border-border bg-surface/60">
-        <Container className="flex justify-end py-1.5">
-          <VehicleTypeSwitch />
-        </Container>
-      </div>
       <Container className="flex h-16 sm:h-20 items-center justify-between gap-4">
         <Link href="/#top" className="flex items-center gap-2.5 shrink-0">
           <Image
@@ -65,6 +60,12 @@ export function Header() {
           </button>
         </div>
       </Container>
+
+      <div className="hidden xl:block border-t border-border">
+        <Container className="flex justify-end py-1.5">
+          <VehicleTypeSwitch />
+        </Container>
+      </div>
 
       {open && (
         <div className="xl:hidden border-t border-border bg-background">

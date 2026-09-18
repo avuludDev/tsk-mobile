@@ -38,7 +38,7 @@ export function Footer() {
                 {link.label}
               </a>
             ))}
-            <VehicleTypeSwitch className="col-span-2 mt-1 sm:mt-2 self-start" />
+            <VehicleTypeSwitch className="col-span-2 mt-1 sm:mt-2 justify-self-start" />
           </nav>
 
           <div className="space-y-2 text-sm">
