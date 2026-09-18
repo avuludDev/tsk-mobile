@@ -30,7 +30,7 @@ const serviceAreaPoints = [
   {
     icon: MapPin,
     title: "5 областей",
-    description: "Хмельницька та суміжні — Тернопільська, Вінницька, Рівненська, Житомирська.",
+    description: "Хмельницька та суміжні - Тернопільська, Вінницька, Рівненська, Житомирська.",
   },
   {
     icon: Navigation,
@@ -55,13 +55,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: truckPage.title,
     description: truckPage.description,
-    images: [{ url: "/hero-banner.jpg", width: 2976, height: 1440, alt: truckPage.title }],
+    images: [{ url: "/hero-banner-truck.jpg", width: 2976, height: 1440, alt: truckPage.title }],
   },
   twitter: {
     card: "summary_large_image",
     title: truckPage.title,
     description: truckPage.description,
-    images: ["/hero-banner.jpg"],
+    images: ["/hero-banner-truck.jpg"],
   },
 };
 
@@ -72,7 +72,8 @@ export default function TruckTirePage() {
       <Header />
       <main>
         <Hero
-          imageAlt="Мобільна бригада TSK mobile обслуговує вантажівку TIR на трасі"
+          imageSrc="/hero-banner-truck.jpg"
+          imageAlt="Майстер TSK mobile міняє колесо фури вночі на трасі, поруч фірмовий сервісний фургон"
           eyebrow={`${site.workHours} · Хмельницький та область`}
           title={truckPage.heroTitle}
           subtitle={truckPage.heroSubtitle}
@@ -93,7 +94,7 @@ export default function TruckTirePage() {
         <PriceList
           eyebrow="Ціни"
           title="Ціни на вантажний шиномонтаж"
-          description="Тестові ціни — уточнюються. Точна вартість залежить від типу техніки та складності робіт."
+          description="Точна вартість залежить від типу техніки та складності робіт."
           tables={truckPriceTables}
         />
         <ServiceArea

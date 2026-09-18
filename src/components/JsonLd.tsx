@@ -54,7 +54,7 @@ export async function JsonLd() {
   };
 
   // Google's Review Snippet guidelines require aggregateRating to reflect real, visible
-  // reviews — only attach it when live Google data is available, never a stale placeholder,
+  // reviews - only attach it when live Google data is available, never a stale placeholder,
   // so it always matches the rating shown in the Reviews section (same fetch, deduped by Next.js).
   if (live && live.totalReviews > 0) {
     business.aggregateRating = {

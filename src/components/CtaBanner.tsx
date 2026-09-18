@@ -11,7 +11,7 @@ export function CtaBanner() {
             Потрібна допомога прямо зараз?
           </h2>
           <p className="mt-3 text-accent-2-foreground">
-            Виїжджаємо по всьому {site.legalCity} та області — {site.workHours.toLowerCase()}.
+            Виїжджаємо по всьому {site.legalCity} та області - {site.workHours.toLowerCase()}.
           </p>
           <div className="mt-8 flex justify-center">
             <PhoneCta

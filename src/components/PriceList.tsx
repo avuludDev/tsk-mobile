@@ -10,7 +10,7 @@ export function PriceList({
   id = "prices",
   eyebrow = "Ціни",
   title = "Актуальні ціни на послуги",
-  description = "Остаточна вартість послуг залежить від конкретної ситуації — уточнюйте деталі за телефоном.",
+  description = "Остаточна вартість послуг залежить від конкретної ситуації - уточнюйте деталі за телефоном.",
   tables = defaultPriceTables,
 }: {
   id?: string;
@@ -73,7 +73,7 @@ export function PriceList({
 
         <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-2xl border border-border bg-background p-6">
           <p className="text-sm text-muted">
-            Не знайшли потрібну послугу в прайсі? Зателефонуйте — озвучимо точну вартість для вашого
+            Не знайшли потрібну послугу в прайсі? Зателефонуйте - озвучимо точну вартість для вашого
             авто.
           </p>
           <PhoneCta className="shrink-0" />

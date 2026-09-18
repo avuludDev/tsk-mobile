@@ -28,11 +28,11 @@ type PlacesApiResponse = {
 };
 
 /**
- * Fetches live reviews for the business from the Places API (New) — Place Details.
- * Requires the GOOGLE_PLACES_API_KEY env var — returns null when it's missing or the request
+ * Fetches live reviews for the business from the Places API (New) - Place Details.
+ * Requires the GOOGLE_PLACES_API_KEY env var - returns null when it's missing or the request
  * fails, so callers can fall back to static example reviews.
  *
- * Google's Places API returns at most 5 of the "most relevant" reviews per request — there is no way
+ * Google's Places API returns at most 5 of the "most relevant" reviews per request - there is no way
  * to fetch the full review history through this API.
  */
 export async function getGoogleReviews(): Promise<GoogleReviewsResult | null> {
@@ -59,7 +59,7 @@ export async function getGoogleReviews(): Promise<GoogleReviewsResult | null> {
     const data: PlacesApiResponse = await res.json();
 
     if (!res.ok || data.error) {
-      console.error(`[google-reviews] API error: ${data.error?.status ?? res.status} — ${data.error?.message ?? res.statusText}`);
+      console.error(`[google-reviews] API error: ${data.error?.status ?? res.status} - ${data.error?.message ?? res.statusText}`);
       return null;
     }
 

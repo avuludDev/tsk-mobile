@@ -9,7 +9,7 @@ const defaultIcons = [Wrench, Disc3, Flame, ShoppingBag];
 export function Services({
   id = "services",
   eyebrow = "Послуги",
-  title = "Все необхідне для ваших коліс — з виїздом до вас",
+  title = "Все необхідне для ваших коліс - з виїздом до вас",
   description = "Виконуємо повний спектр шиномонтажних робіт на місці, без буксирування та черг на СТО.",
   items = services,
   icons = defaultIcons,

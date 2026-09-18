@@ -9,7 +9,7 @@ const manrope = Manrope({
   subsets: ["latin", "cyrillic"],
 });
 
-const title = "Мобільний шиномонтаж 24/7 у Хмельницькому та області — TSK mobile";
+const title = "Мобільний шиномонтаж 24/7 у Хмельницькому та області - TSK mobile";
 const description =
   "Мобільний шиномонтаж TSK mobile у Хмельницькому та області: ремонт, заміна шин, зварювання та рихтування дисків. Приїзд за 30–60 хв, цілодобово 24/7.";
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: title,
-    template: `%s — ${site.name}`,
+    template: `%s - ${site.name}`,
   },
   description,
   keywords: [

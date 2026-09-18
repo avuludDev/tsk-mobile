@@ -5,7 +5,7 @@ import { PhoneCta, PhoneNumber } from "./PhoneCta";
 import { site } from "@/lib/site-data";
 
 export function Contacts() {
-  // The embed ignores the zoom param and shows the whole world when queried by place_id — a
+  // The embed ignores the zoom param and shows the whole world when queried by place_id - a
   // known Google quirk. A name+address text query zooms correctly and still labels the pin.
   const mapSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
     `${site.gbpName}, ${site.addressFull}`
