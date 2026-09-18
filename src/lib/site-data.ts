@@ -25,16 +25,35 @@ export const site = {
 export const telHref = `tel:+${site.phoneRaw}`;
 export const viberHref = `viber://chat?number=%2B${site.phoneRaw}`;
 
-export const navLinks: { href: string; label: string; shortLabel?: string }[] = [
+export type NavLink = {
+  href: string;
+  label: string;
+  shortLabel?: string;
+  // Секція є лише на головній (наприклад "Як працюємо") — такі посилання завжди
+  // ведуть на головну, навіть якщо їх показують на іншій сторінці.
+  homeOnly?: boolean;
+};
+
+export const navLinks: NavLink[] = [
   { href: "/#services", label: "Послуги" },
   { href: "/#advantages", label: "Переваги" },
-  { href: "/#how-it-works", label: "Як працюємо" },
+  { href: "/#how-it-works", label: "Як працюємо", homeOnly: true },
   { href: "/#prices", label: "Ціни" },
   { href: "/#service-area", label: "Зона обслуговування", shortLabel: "Зона" },
   { href: "/vantazhnyi", label: "Вантажний шиномонтаж", shortLabel: "Вантажівки" },
   { href: "/#reviews", label: "Відгуки" },
   { href: "/#contacts", label: "Контакти" },
 ];
+
+// Переписує "/#section" на "{pathname}#section", щоб навігація гортала секцію поточної
+// сторінки, а не завжди тягнула користувача на головну. Посилання на самостійні сторінки
+// (не якір) та секції, яких немає поза головною (homeOnly), лишаються без змін.
+export function resolveNavHref(link: NavLink, pathname: string): string {
+  if (link.homeOnly || pathname === "/" || !link.href.startsWith("/#")) {
+    return link.href;
+  }
+  return `${pathname}${link.href.slice(1)}`;
+}
 
 export type Service = {
   title: string;

@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { PhoneNumber } from "./PhoneCta";
 import { LegalLinks } from "./LegalLinks";
-import { navLinks, site } from "@/lib/site-data";
+import { navLinks, resolveNavHref, site } from "@/lib/site-data";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -15,6 +18,8 @@ function InstagramIcon({ className }: { className?: string }) {
 }
 
 export function Footer() {
+  const pathname = usePathname();
+
   return (
     <footer className="py-12">
       <Container>
@@ -28,7 +33,7 @@ export function Footer() {
 
           <nav className="grid grid-cols-2 gap-x-8 gap-y-2 sm:flex sm:flex-col">
             {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className="text-sm text-muted hover:text-foreground">
+              <a key={link.href} href={resolveNavHref(link, pathname)} className="text-sm text-muted hover:text-foreground">
                 {link.label}
               </a>
             ))}

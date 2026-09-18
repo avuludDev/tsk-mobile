@@ -3,13 +3,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Container } from "./Container";
 import { PhoneCta, PhoneNumber } from "./PhoneCta";
-import { navLinks, site } from "@/lib/site-data";
+import { navLinks, resolveNavHref, site } from "@/lib/site-data";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
@@ -32,7 +34,7 @@ export function Header() {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={resolveNavHref(link, pathname)}
               className="whitespace-nowrap text-sm text-muted hover:text-foreground transition-colors"
             >
               {link.shortLabel ?? link.label}
@@ -61,7 +63,7 @@ export function Header() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={resolveNavHref(link, pathname)}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-sm text-foreground hover:bg-surface"
               >

@@ -8,6 +8,7 @@ import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
 import { PriceList } from "@/components/PriceList";
 import { ServiceArea } from "@/components/ServiceArea";
+import { Reviews } from "@/components/Reviews";
 import { Faq } from "@/components/Faq";
 import { Contacts } from "@/components/Contacts";
 import { CtaBanner } from "@/components/CtaBanner";
@@ -106,6 +107,7 @@ export default function TruckTirePage() {
           primaryList={truckServiceAreaRegions}
           secondaryList={[]}
         />
+        <Reviews />
         <Faq title="Часті запитання про вантажний шиномонтаж" items={truckFaq} />
         <Contacts />
         <CtaBanner />
