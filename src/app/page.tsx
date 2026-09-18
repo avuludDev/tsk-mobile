@@ -1,3 +1,4 @@
+import { JsonLd } from "@/components/JsonLd";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
@@ -15,6 +16,7 @@ import { MobileCallBar } from "@/components/MobileCallBar";
 export default function Home() {
   return (
     <>
+      <JsonLd />
       <Header />
       <main>
         <Hero />

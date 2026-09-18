@@ -1,26 +1,15 @@
 import { site, faq } from "@/lib/site-data";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
-export function JsonLd() {
-  const faqData = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faq.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
+export async function JsonLd() {
+  const live = await getGoogleReviews();
 
-  const data = {
-    "@context": "https://schema.org",
+  const business: Record<string, unknown> = {
     "@type": "AutoRepair",
+    "@id": `${site.url}/#business`,
     name: site.gbpName,
     alternateName: site.name,
     image: `${site.url}/logo.png`,
-    "@id": site.url,
     url: site.url,
     telephone: `+${site.phoneRaw}`,
     priceRange: "₴₴",
@@ -64,16 +53,39 @@ export function JsonLd() {
     sameAs: [site.instagram],
   };
 
+  // Google's Review Snippet guidelines require aggregateRating to reflect real, visible
+  // reviews — only attach it when live Google data is available, never a stale placeholder,
+  // so it always matches the rating shown in the Reviews section (same fetch, deduped by Next.js).
+  if (live && live.totalReviews > 0) {
+    business.aggregateRating = {
+      "@type": "AggregateRating",
+      ratingValue: live.rating,
+      reviewCount: live.totalReviews,
+    };
+  }
+
+  const faqPage = {
+    "@type": "FAQPage",
+    "@id": `${site.url}/#faq`,
+    mainEntity: faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  };
+
+  const data = {
+    "@context": "https://schema.org",
+    "@graph": [business, faqPage],
+  };
+
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
   );
 }

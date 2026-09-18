@@ -1,22 +1,39 @@
 import Image from "next/image";
+import type { LucideIcon } from "lucide-react";
 import { Clock, ShieldCheck, MapPinned } from "lucide-react";
 import { Container } from "./Container";
 import { PhoneCta } from "./PhoneCta";
 import { site } from "@/lib/site-data";
 
-const badges = [
+const defaultBadges = [
   { icon: Clock, label: "Приїзд за 30–60 хв" },
   { icon: ShieldCheck, label: "Гарантія на роботу" },
   { icon: MapPinned, label: "Місто й область" },
 ];
 
-export function Hero() {
+export function Hero({
+  id = "top",
+  imageSrc = "/hero-banner.jpg",
+  imageAlt = "Мобільна бригада TSK mobile виконує шиномонтаж на виїзді вночі",
+  eyebrow = `${site.workHours} · ${site.legalCity} та область`,
+  title = "Мобільний шиномонтаж у Хмельницькому 24/7",
+  subtitle = "Приїжджаємо за 30–60 хвилин у будь-яку точку Хмельницького та області. Шиномонтаж, ремонт і заміна шин прямо біля вашого авто — без черг і поїздок на СТО.",
+  badges = defaultBadges,
+}: {
+  id?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  badges?: { icon: LucideIcon; label: string }[];
+} = {}) {
   return (
-    <section id="top" className="relative overflow-hidden border-b border-border">
+    <section id={id} className="relative overflow-hidden border-b border-border">
       <div className="absolute inset-0">
         <Image
-          src="/hero-banner.jpg"
-          alt="Мобільна бригада TSK mobile виконує шиномонтаж на виїзді вночі"
+          src={imageSrc}
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"
@@ -28,15 +45,12 @@ export function Hero() {
       <Container className="relative py-16 sm:py-24 lg:py-32">
         <div className="max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/80 backdrop-blur px-4 py-1.5 text-xs font-medium text-muted">
-            {site.workHours} · {site.legalCity} та область
+            {eyebrow}
           </span>
           <h1 className="mt-6 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
-            Мобільний шиномонтаж у Хмельницькому 24/7
+            {title}
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl">
-            Приїжджаємо за 30–60 хвилин у будь-яку точку Хмельницького та області. Шиномонтаж,
-            ремонт і заміна шин прямо біля вашого авто — без черг і поїздок на СТО.
-          </p>
+          <p className="mt-6 text-lg sm:text-xl text-muted max-w-2xl">{subtitle}</p>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <PhoneCta variant="solid" className="text-base" />
             <PhoneCta variant="outline" label={site.phoneDisplay} className="text-base" />

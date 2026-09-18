@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import { JsonLd } from "@/components/JsonLd";
 import { GoogleAdsTag } from "@/components/GoogleAdsTag";
 import { site } from "@/lib/site-data";
 import "./globals.css";
@@ -64,9 +63,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="uk" className={`${manrope.variable} h-full antialiased`}>
-      <head>
-        <JsonLd />
-      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground pb-14 lg:pb-0">
         <GoogleAdsTag />
         {children}

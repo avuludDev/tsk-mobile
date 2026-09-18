@@ -1,21 +1,32 @@
+import type { LucideIcon } from "lucide-react";
 import { Wrench, Disc3, Flame, ShoppingBag, Check } from "lucide-react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
-import { services } from "@/lib/site-data";
+import { services, type Service } from "@/lib/site-data";
 
-const icons = [Wrench, Disc3, Flame, ShoppingBag];
+const defaultIcons = [Wrench, Disc3, Flame, ShoppingBag];
 
-export function Services() {
+export function Services({
+  id = "services",
+  eyebrow = "Послуги",
+  title = "Все необхідне для ваших коліс — з виїздом до вас",
+  description = "Виконуємо повний спектр шиномонтажних робіт на місці, без буксирування та черг на СТО.",
+  items = services,
+  icons = defaultIcons,
+}: {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  items?: Service[];
+  icons?: LucideIcon[];
+} = {}) {
   return (
-    <section id="services" className="py-16 sm:py-24 border-b border-border">
+    <section id={id} className="py-16 sm:py-24 border-b border-border">
       <Container>
-        <SectionHeading
-          eyebrow="Послуги"
-          title="Все необхідне для ваших коліс — з виїздом до вас"
-          description="Виконуємо повний спектр шиномонтажних робіт на місці, без буксирування та черг на СТО."
-        />
+        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service, i) => {
+          {items.map((service, i) => {
             const Icon = icons[i];
             return (
               <div

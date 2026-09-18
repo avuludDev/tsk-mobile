@@ -4,23 +4,31 @@ import { useState } from "react";
 import { Container } from "./Container";
 import { SectionHeading } from "./SectionHeading";
 import { PhoneCta } from "./PhoneCta";
-import { priceTables } from "@/lib/site-data";
+import { priceTables as defaultPriceTables, type PriceTable } from "@/lib/site-data";
 
-export function PriceList() {
-  const [active, setActive] = useState(priceTables[0].id);
-  const table = priceTables.find((t) => t.id === active) ?? priceTables[0];
+export function PriceList({
+  id = "prices",
+  eyebrow = "Ціни",
+  title = "Актуальні ціни на послуги",
+  description = "Остаточна вартість послуг залежить від конкретної ситуації — уточнюйте деталі за телефоном.",
+  tables = defaultPriceTables,
+}: {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  tables?: PriceTable[];
+} = {}) {
+  const [active, setActive] = useState(tables[0].id);
+  const table = tables.find((t) => t.id === active) ?? tables[0];
 
   return (
-    <section id="prices" className="py-16 sm:py-24 border-b border-border bg-surface/40">
+    <section id={id} className="py-16 sm:py-24 border-b border-border bg-surface/40">
       <Container>
-        <SectionHeading
-          eyebrow="Ціни"
-          title="Актуальні ціни на послуги"
-          description="Остаточна вартість послуг залежить від конкретної ситуації — уточнюйте деталі за телефоном."
-        />
+        <SectionHeading eyebrow={eyebrow} title={title} description={description} />
 
         <div className="mt-10 flex flex-wrap gap-2">
-          {priceTables.map((t) => (
+          {tables.map((t) => (
             <button
               key={t.id}
               type="button"
