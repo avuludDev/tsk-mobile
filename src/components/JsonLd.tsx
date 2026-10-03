@@ -1,4 +1,4 @@
-import { site, faq } from "@/lib/site-data";
+import { site, faq, homeGallery } from "@/lib/site-data";
 import { getGoogleReviews } from "@/lib/google-reviews";
 
 export async function JsonLd() {
@@ -9,7 +9,8 @@ export async function JsonLd() {
     "@id": `${site.url}/#business`,
     name: site.gbpName,
     alternateName: site.name,
-    image: `${site.url}/logo.png`,
+    // Логотип першим, далі реальні фото робіт з галереї
+    image: [`${site.url}/logo.png`, ...homeGallery.map((image) => `${site.url}${image.url}`)],
     url: site.url,
     telephone: `+${site.phoneRaw}`,
     priceRange: "₴₴",

@@ -1,4 +1,4 @@
-import { site, truckPage, truckServiceAreaRegions, truckFaq } from "@/lib/site-data";
+import { site, truckPage, truckServiceAreaRegions, truckFaq, truckGallery } from "@/lib/site-data";
 import { getGoogleReviews } from "@/lib/google-reviews";
 
 export async function TruckJsonLd() {
@@ -30,6 +30,11 @@ export async function TruckJsonLd() {
     serviceType: "Вантажний шиномонтаж, ремонт шин трактора, виїзний шиномонтаж TIR",
     description: truckPage.description,
     url: `${site.url}${truckPage.path}`,
+    image: truckGallery.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: `${site.url}${image.url}`,
+      caption: image.caption,
+    })),
     provider,
     areaServed: [
       { "@type": "City", name: "Хмельницький" },

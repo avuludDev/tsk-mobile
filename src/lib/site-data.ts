@@ -349,32 +349,32 @@ export const homeSeoText: SeoTextBlock = {
 
 export const homeGallery = [
   {
-    url: "/gallery/image_4.jpg",
+    url: "/gallery/mobilnyi-shynomontazh-khmelnytskyi-vnochi.jpg",
     alt: "Цілодобовий мобільний шиномонтаж Хмельницький: виїзд до комерційного авто",
     caption: "Оперативний ремонт шин для комерційного транспорту (мікроавтобусів) у місті вночі.",
   },
   {
-    url: "/gallery/image_6.jpg",
-    alt: "Виїзний шиномонтаж для легкових авто: заміна пробитого колеса",
+    url: "/gallery/zamina-probytoho-kolesa-lehkovoho-avto.jpg",
+    alt: "Виїзний шиномонтаж для легкових авто у Хмельницькому: заміна пробитого колеса",
     caption: "Швидка заміна пробитого колеса легкового автомобіля просто на місці паркування.",
   },
   {
-    url: "/gallery/image_8.jpg",
+    url: "/gallery/dopomoha-na-dorozi-mikroavtobus-vnochi.jpg",
     alt: "Допомога на дорозі 24/7: ремонт колеса мікроавтобуса вночі",
     caption: "Аварійна нічна допомога на дорозі для легких вантажівок із застосуванням підкатних домкратів.",
   },
   {
-    url: "/gallery/image_9.jpg",
-    alt: "Аварійний шиномонтаж на трасі: нічний виїзд до легкового авто",
+    url: "/gallery/avariinyi-shynomontazh-na-trasi-vnochi.jpg",
+    alt: "Аварійний шиномонтаж на трасі під Хмельницьким: нічний виїзд до легкового авто",
     caption: "Екстрений виїзд за місто для порятунку водіїв легкових авто на неосвітленій трасі.",
   },
   {
-    url: "/gallery/image_12.jpg",
-    alt: "Виїзний шиномонтаж на трасі: допомога позашляховику на узбіччі",
+    url: "/gallery/vyiznyi-shynomontazh-na-trasi-pozashliakhovyk.jpg",
+    alt: "Виїзний шиномонтаж на трасі в Хмельницькій області: допомога позашляховику на узбіччі",
     caption: "Виїзд на трасу до позашляховика - ремонт колеса просто на узбіччі, без евакуатора.",
   },
   {
-    url: "/gallery/image_13.jpg",
+    url: "/gallery/rozirvana-shyna-pozashliakhovyka.jpg",
     alt: "Пробили колесо: розірвана боковина шини позашляховика",
     caption: "Розірвана боковина після їзди на спущеному колесі - заміна колеса на місці виклику.",
   },
@@ -490,32 +490,32 @@ export const truckSeoText: SeoTextBlock = {
 
 export const truckGallery = [
   {
-    url: "/gallery/image_2.jpg",
+    url: "/gallery/vantazhnyi-shynomontazh-daf-khmelnytskyi.jpg",
     alt: "Мобільний вантажний шиномонтаж Хмельницький: ремонт колеса фури DAF",
     caption: "Обслуговування вантажних автомобілів на виїзді: швидкий ремонт фури DAF.",
   },
   {
-    url: "/gallery/image_3.jpg",
+    url: "/gallery/remont-vantazhnoi-shyny-tir-plastyr.jpg",
     alt: "Ремонт вантажних шин TIR: встановлення пластиру на пробите колесо",
     caption: "Надійний ремонт порізів та проколів вантажних шин за допомогою посилених пластирів.",
   },
   {
-    url: "/gallery/image_5.jpg",
+    url: "/gallery/demontazh-kolis-napivprychepa-na-vyizdi.jpg",
     alt: "Виїзний шиномонтаж для причепів: демонтаж вантажних коліс на трасі",
     caption: "Заміна коліс на вантажних напівпричепах із застосуванням потужного акумуляторного інструменту.",
   },
   {
-    url: "/gallery/image_7.jpg",
-    alt: "Шиномонтаж для спецтехніки: ремонт великогабаритної шини трактора вночі",
+    url: "/gallery/remont-shyny-traktora-vnochi.jpg",
+    alt: "Шиномонтаж для спецтехніки в Хмельницькій області: ремонт великогабаритної шини трактора вночі",
     caption: "Нічний виїзд до агротехніки та ремонт великогабаритних шин просто в полі.",
   },
   {
-    url: "/gallery/image_10.jpg",
+    url: "/gallery/zamina-kolesa-vazhkoi-tekhniky-vnochi.jpg",
     alt: "Аварійний вантажний шиномонтаж: нічна допомога для важкої вантажівки",
     caption: "Підйом та заміна коліс важкої техніки у польових умовах вночі.",
   },
   {
-    url: "/gallery/image_11.jpg",
+    url: "/gallery/remont-kolesa-vantazhivky-man-na-trasi.jpg",
     alt: "Екстрена допомога на дорозі TIR: заміна колеса вантажівки MAN",
     caption: "Нічний виїзд технічки для ремонту пробитої шини вантажівки MAN на трасі.",
   },
