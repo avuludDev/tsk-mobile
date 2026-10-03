@@ -28,7 +28,7 @@ export function Footer() {
           <div>
             <Image src="/logo.png" alt="TSK mobile" width={543} height={188} className="h-10 w-auto" />
             <p className="mt-3 max-w-xs text-sm text-muted">
-              Мобільний шиномонтаж 24/7 у {site.legalCity} та області.
+              Мобільний шиномонтаж 24/7 у {site.cityLocative} та області.
             </p>
           </div>
 
