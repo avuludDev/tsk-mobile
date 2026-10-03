@@ -32,13 +32,16 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="grid grid-cols-2 gap-x-8 gap-y-2 sm:flex sm:flex-col">
-            {navLinks.map((link) => (
-              <a key={link.href} href={resolveNavHref(link, pathname)} className="text-sm text-muted hover:text-foreground">
-                {link.label}
-              </a>
-            ))}
-            <VehicleTypeSwitch className="col-span-2 mt-1 sm:mt-2 justify-self-start" />
+          <nav className="flex flex-col items-start gap-3 sm:gap-4">
+            {/* Дві колонки, що читаються зверху вниз у порядку секцій на сторінці */}
+            <div className="grid grid-flow-col grid-rows-5 gap-x-8 gap-y-2">
+              {navLinks.map((link) => (
+                <a key={link.href} href={resolveNavHref(link, pathname)} className="text-sm text-muted hover:text-foreground">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+            <VehicleTypeSwitch />
           </nav>
 
           <div className="space-y-2 text-sm">

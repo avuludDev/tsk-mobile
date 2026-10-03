@@ -32,15 +32,22 @@ export type NavLink = {
   // Секція є лише на головній (наприклад "Як працюємо") — такі посилання завжди
   // ведуть на головну, навіть якщо їх показують на іншій сторінці.
   homeOnly?: boolean;
+  // На десктопі ховається у випадаюче меню "Ще", щоб шапка не переповнювалась.
+  // На мобільному та у футері показуються всі пункти підряд.
+  secondary?: boolean;
 };
 
+// Порядок збігається з порядком секцій на сторінках.
 export const navLinks: NavLink[] = [
   { href: "/#services", label: "Послуги" },
-  { href: "/#advantages", label: "Переваги" },
-  { href: "/#how-it-works", label: "Як працюємо" },
+  { href: "/#advantages", label: "Переваги", secondary: true },
+  { href: "/#gallery", label: "Наші роботи", shortLabel: "Роботи" },
+  { href: "/#how-it-works", label: "Як працюємо", secondary: true },
   { href: "/#prices", label: "Ціни" },
   { href: "/#service-area", label: "Зона обслуговування", shortLabel: "Зона" },
   { href: "/#reviews", label: "Відгуки" },
+  { href: "/#roadside-help", label: "Екстрена допомога", secondary: true },
+  { href: "/#faq", label: "Часті запитання", secondary: true },
   { href: "/#contacts", label: "Контакти" },
 ];
 
