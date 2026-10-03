@@ -1,10 +1,7 @@
-import { site, truckPage, truckServiceAreaRegions, truckFaq } from "@/lib/site-data";
-import { getGoogleReviews } from "@/lib/google-reviews";
+import { site, truckPage, truckServiceAreaRegions, truckFaq, truckGallery } from "@/lib/site-data";
 
-export async function TruckJsonLd() {
-  const live = await getGoogleReviews();
-
-  const provider: Record<string, unknown> = {
+export function TruckJsonLd() {
+  const provider = {
     "@type": "AutoRepair",
     "@id": `${site.url}/#business`,
     name: site.gbpName,
@@ -13,16 +10,6 @@ export async function TruckJsonLd() {
     url: site.url,
   };
 
-  // Ті самі живі відгуки Google, що й на головній (Reviews.tsx) — блок відгуків тепер
-  // дубльовано і на цій сторінці, бо це загальна оцінка сервісу, а не конкретно вантажних робіт.
-  if (live && live.totalReviews > 0) {
-    provider.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: live.rating,
-      reviewCount: live.totalReviews,
-    };
-  }
-
   const service = {
     "@type": "Service",
     "@id": `${site.url}${truckPage.path}#service`,
@@ -30,6 +17,11 @@ export async function TruckJsonLd() {
     serviceType: "Вантажний шиномонтаж, ремонт шин трактора, виїзний шиномонтаж TIR",
     description: truckPage.description,
     url: `${site.url}${truckPage.path}`,
+    image: truckGallery.map((image) => ({
+      "@type": "ImageObject",
+      contentUrl: `${site.url}${image.url}`,
+      caption: image.caption,
+    })),
     provider,
     areaServed: [
       { "@type": "City", name: "Хмельницький" },

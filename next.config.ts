@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    // AVIF для браузерів, що його підтримують, WebP - як запасний варіант
+    formats: ["image/avif", "image/webp"],
+  },
 };
 
 export default nextConfig;
