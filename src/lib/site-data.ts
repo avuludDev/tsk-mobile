@@ -321,6 +321,7 @@ export type SeoTextBlock = {
   title: string;
   intro: string;
   sections: { heading: string; text: string }[];
+  image?: { url: string; alt: string; caption: string };
 };
 
 export const homeSeoText: SeoTextBlock = {
@@ -486,6 +487,11 @@ export const truckSeoText: SeoTextBlock = {
       text: "Мобільний шиномонтаж для спецтехніки та агротехніки - трактори, комбайни, навантажувачі. Приїжджаємо просто в поле й працюємо з великогабаритними колесами.",
     },
   ],
+  image: {
+    url: "/gallery/image_14.jpg",
+    alt: "Ремонт шин TIR на виїзді: вантажна шина біля мобільної майстерні вночі",
+    caption: "Нічний ремонт вантажної шини: колесо знято, пластир встановлюється просто біля мобільної майстерні.",
+  },
 };
 
 export const truckGallery = [
