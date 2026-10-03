@@ -25,7 +25,9 @@ export function Gallery({
     <section id={id} className="py-16 sm:py-24 border-b border-border">
       <Container>
         <SectionHeading eyebrow={eyebrow} title={title} description={description} />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div
+          className={`mt-12 grid gap-6 sm:grid-cols-2 ${images.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}
+        >
           {images.map((image) => (
             <figure
               key={image.url}
@@ -36,7 +38,7 @@ export function Gallery({
                   src={image.url}
                   alt={image.alt}
                   fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes={`(min-width: 1024px) ${images.length === 4 ? "25vw" : "33vw"}, (min-width: 640px) 50vw, 100vw`}
                   className="object-cover"
                 />
               </div>
