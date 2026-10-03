@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { Container } from "./Container";
 import { PhoneCta, PhoneNumber } from "./PhoneCta";
 import { VehicleTypeSwitch } from "./VehicleTypeSwitch";
@@ -12,7 +12,29 @@ import { navLinks, resolveNavHref, site } from "@/lib/site-data";
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const moreRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+
+  const primaryLinks = navLinks.filter((link) => !link.secondary);
+  const secondaryLinks = navLinks.filter((link) => link.secondary);
+
+  // Закриваємо "Ще" при кліку поза меню або по Escape
+  useEffect(() => {
+    if (!moreOpen) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!moreRef.current?.contains(e.target as Node)) setMoreOpen(false);
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMoreOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [moreOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
@@ -32,7 +54,7 @@ export function Header() {
         </Link>
 
         <nav className="hidden xl:flex items-center gap-5 min-w-0">
-          {navLinks.map((link) => (
+          {primaryLinks.map((link) => (
             <a
               key={link.href}
               href={resolveNavHref(link, pathname)}
@@ -41,6 +63,40 @@ export function Header() {
               {link.shortLabel ?? link.label}
             </a>
           ))}
+          <div
+            ref={moreRef}
+            className="relative"
+            onMouseEnter={() => setMoreOpen(true)}
+            onMouseLeave={() => setMoreOpen(false)}
+          >
+            <button
+              type="button"
+              aria-haspopup="true"
+              aria-expanded={moreOpen}
+              // Лише відкриває: мишкою меню вже відкрилось наведенням, і перемикання закрило б його.
+              // Закривається відведенням курсора, кліком поза меню або Escape.
+              onClick={() => setMoreOpen(true)}
+              className="flex items-center gap-1 whitespace-nowrap text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Ще
+              <ChevronDown className={`h-4 w-4 transition-transform ${moreOpen ? "rotate-180" : ""}`} aria-hidden />
+            </button>
+            {/* pt-3 - "місток" між кнопкою і меню, щоб воно не закривалось, поки курсор переходить */}
+            <div className={`absolute right-0 top-full pt-3 ${moreOpen ? "block" : "hidden"}`}>
+              <div className="min-w-52 rounded-xl border border-border bg-background p-1.5 shadow-lg">
+                {secondaryLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={resolveNavHref(link, pathname)}
+                    onClick={() => setMoreOpen(false)}
+                    className="block whitespace-nowrap rounded-lg px-3 py-2 text-sm text-muted hover:bg-surface hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </nav>
 
         <div className="hidden xl:flex items-center gap-4 shrink-0">

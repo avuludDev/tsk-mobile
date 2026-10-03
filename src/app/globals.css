@@ -37,6 +37,17 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Відступ під липку шапку при переході за якорем (#services, #gallery…) */
+section[id] {
+  scroll-margin-top: 4rem;
+}
+
+@media (min-width: 40rem) {
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+}
+
 ::selection {
   background: var(--accent);
   color: var(--accent-foreground);

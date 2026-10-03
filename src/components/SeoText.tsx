@@ -3,7 +3,7 @@ import { SectionHeading } from "./SectionHeading";
 import type { SeoTextBlock } from "@/lib/site-data";
 
 export function SeoText({
-  id = "about",
+  id = "roadside-help",
   eyebrow,
   block,
 }: {
