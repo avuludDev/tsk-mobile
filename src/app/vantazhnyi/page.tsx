@@ -6,6 +6,8 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
+import { Gallery } from "@/components/Gallery";
+import { SeoText } from "@/components/SeoText";
 import { HowItWorks } from "@/components/HowItWorks";
 import { PriceList } from "@/components/PriceList";
 import { ServiceArea } from "@/components/ServiceArea";
@@ -23,6 +25,8 @@ import {
   truckPriceTables,
   truckServiceAreaRegions,
   truckFaq,
+  truckGallery,
+  truckSeoText,
 } from "@/lib/site-data";
 
 const serviceIcons = [Truck, Tractor, Flame, Scissors];
@@ -93,6 +97,11 @@ export default function TruckTirePage() {
           items={truckAdvantages}
           icons={advantageIcons}
         />
+        <Gallery
+          title="Вантажний шиномонтаж у роботі"
+          description="Виїзди до фур, причепів і агротехніки - на трасі, базі та в полі."
+          images={truckGallery}
+        />
         <HowItWorks />
         <PriceList
           eyebrow="Ціни"
@@ -110,6 +119,7 @@ export default function TruckTirePage() {
           secondaryList={[]}
         />
         <Reviews />
+        <SeoText eyebrow="Екстрена допомога" block={truckSeoText} />
         <Faq title="Часті запитання про вантажний шиномонтаж" items={truckFaq} />
         <Contacts />
         <CtaBanner />
