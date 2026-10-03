@@ -1,10 +1,9 @@
 import { site, faq, homeGallery } from "@/lib/site-data";
-import { getGoogleReviews } from "@/lib/google-reviews";
 
-export async function JsonLd() {
-  const live = await getGoogleReviews();
-
-  const business: Record<string, unknown> = {
+export function JsonLd() {
+  // aggregateRating навмисно не додаємо: Google не показує зірки для рейтингу бізнесу
+  // про самого себе, а відгуки з Google Maps (сторонні) в розмітці заборонені правилами.
+  const business = {
     "@type": "AutoRepair",
     "@id": `${site.url}/#business`,
     name: site.gbpName,
@@ -53,17 +52,6 @@ export async function JsonLd() {
     },
     sameAs: [site.instagram],
   };
-
-  // Google's Review Snippet guidelines require aggregateRating to reflect real, visible
-  // reviews - only attach it when live Google data is available, never a stale placeholder,
-  // so it always matches the rating shown in the Reviews section (same fetch, deduped by Next.js).
-  if (live && live.totalReviews > 0) {
-    business.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: live.rating,
-      reviewCount: live.totalReviews,
-    };
-  }
 
   const faqPage = {
     "@type": "FAQPage",

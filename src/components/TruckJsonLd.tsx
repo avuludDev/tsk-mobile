@@ -1,10 +1,7 @@
 import { site, truckPage, truckServiceAreaRegions, truckFaq, truckGallery } from "@/lib/site-data";
-import { getGoogleReviews } from "@/lib/google-reviews";
 
-export async function TruckJsonLd() {
-  const live = await getGoogleReviews();
-
-  const provider: Record<string, unknown> = {
+export function TruckJsonLd() {
+  const provider = {
     "@type": "AutoRepair",
     "@id": `${site.url}/#business`,
     name: site.gbpName,
@@ -12,16 +9,6 @@ export async function TruckJsonLd() {
     telephone: `+${site.phoneRaw}`,
     url: site.url,
   };
-
-  // Ті самі живі відгуки Google, що й на головній (Reviews.tsx) — блок відгуків тепер
-  // дубльовано і на цій сторінці, бо це загальна оцінка сервісу, а не конкретно вантажних робіт.
-  if (live && live.totalReviews > 0) {
-    provider.aggregateRating = {
-      "@type": "AggregateRating",
-      ratingValue: live.rating,
-      reviewCount: live.totalReviews,
-    };
-  }
 
   const service = {
     "@type": "Service",
