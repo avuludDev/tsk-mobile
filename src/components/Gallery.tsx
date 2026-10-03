@@ -31,7 +31,7 @@ export function Gallery({
               key={image.url}
               className="overflow-hidden rounded-2xl border border-border bg-surface"
             >
-              <div className="relative aspect-[4/3]">
+              <div className="relative aspect-[4/5]">
                 <Image
                   src={image.url}
                   alt={image.alt}
