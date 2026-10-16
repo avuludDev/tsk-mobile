@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
+import { NewTires } from "@/components/NewTires";
 import { Gallery } from "@/components/Gallery";
 import { SeoText } from "@/components/SeoText";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -14,7 +15,7 @@ import { Contacts } from "@/components/Contacts";
 import { CtaBanner } from "@/components/CtaBanner";
 import { Footer } from "@/components/Footer";
 import { MobileCallBar } from "@/components/MobileCallBar";
-import { homeGallery, homeSeoText } from "@/lib/site-data";
+import { homeGallery, homeSeoText, homeTireOffer } from "@/lib/site-data";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
+        <NewTires offer={homeTireOffer} />
         <Advantages />
         <Gallery
           title="Мобільний шиномонтаж у роботі"
