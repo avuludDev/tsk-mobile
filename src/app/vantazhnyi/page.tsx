@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { Advantages } from "@/components/Advantages";
+import { NewTires } from "@/components/NewTires";
 import { Gallery } from "@/components/Gallery";
 import { SeoText } from "@/components/SeoText";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -27,6 +28,7 @@ import {
   truckFaq,
   truckGallery,
   truckSeoText,
+  truckTireOffer,
 } from "@/lib/site-data";
 
 const serviceIcons = [Truck, Tractor, Flame, Scissors];
@@ -91,6 +93,7 @@ export default function TruckTirePage() {
           items={truckServices}
           icons={serviceIcons}
         />
+        <NewTires offer={truckTireOffer} />
         <Advantages
           eyebrow="Переваги"
           title="Чому автопарки обирають TSK mobile"
